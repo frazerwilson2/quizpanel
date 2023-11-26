@@ -32,8 +32,13 @@ io.on('connection', (socket) => {
     socket.on('disconnect', () => {
         console.log('user disconnected');
         var srvSockets = io.sockets.sockets;
-        srvSockets.forEach((value, key) => {delete users[key]});
-        console.log({users});
+        // srvSockets.forEach((value, key) => {
+        //     if(!users.hasOwnProperty(key)){
+        //         console.log(value);
+        //         delete users[key];
+        //     }
+        // });
+        // console.log({users});
         io.emit('userList', users)
     });
     socket.on('usr', (user) => {
@@ -44,9 +49,11 @@ io.on('connection', (socket) => {
     socket.on('answers', (msg) => {
         console.log(msg);
         const newUsers = Object.assign({}, users);
-        newUsers[msg.id].answers = msg.answers;
-        users = newUsers;
-        io.emit('userList', users)
+        if(newUsers.hasOwnProperty(msg.id)){
+            newUsers[msg.id].answers = msg.answers;
+            users = newUsers;
+            io.emit('userList', users)
+        }
     });
 });
 

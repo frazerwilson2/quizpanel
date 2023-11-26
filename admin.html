@@ -14,11 +14,15 @@
       #messages { list-style-type: none; margin: 0; padding: 0; }
       #messages > li { padding: 0.5rem 1rem; }
       #messages > li:nth-child(odd) { background: #efefef; }
+      .players {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        border: 1px gray solid;
+      }
     </style>
   </head>
   <body>
-
-
+    <div id="players" class="players"></div>
 
     <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
     <script>
@@ -26,7 +30,7 @@
 
       socket.on('userList', (users) => {
         console.log('received evt', users);
-        document.body.innerHTML = Object.values(users).map(u => `<div>
+        document.querySelector('#players').innerHTML = Object.values(users).map(u => `<div>
             <h1>${u.name}</h1>
             <ul>${Object.values(u.answers).map((answer, i) => `<li>${answer.q}. ${answer.a}</li>`).join('')}</ul>
         </div>`).join('')
