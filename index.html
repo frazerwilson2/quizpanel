@@ -2,17 +2,26 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>Socket.IO chat</title>
+    <title>Quiz panel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@700&display=swap" rel="stylesheet">
     <style>
       body { background: #5ab95a; color: white; margin: 0; padding-bottom: 3rem; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
-
+      .forms {
+        scroll-snap-type: y mandatory;
+        max-height: 100vh;
+        overflow: auto;
+      }
       form {
         display: grid;
         height: 100vh;
         grid-auto-rows: 3rem;
         gap: 0.5rem;
-        padding: 0.5rem 1rem;
+        padding: 1rem 1rem;
+        box-sizing: border-box;
         align-items: center;
+        scroll-snap-align: center;
       }
       form div {
         display: flex;
@@ -26,6 +35,7 @@
       }
       button {
         padding: 0.4rem;
+        margin: 0.2rem;
         border-radius: 4px;
         border:none;
         font-size: 1.5rem;
@@ -34,77 +44,94 @@
         display: flex;
         align-items: center;
       }
+      form div span {
+        flex-basis: 20px;
+      }
 
       .hide {
         display: none;
+      }
+      .join {
+        display: flex;
+        padding: 1rem;
+        gap: 0.5rem;
+      }
+      h1, h2 {
+        font-family: 'Mountains of Christmas', serif;
+        color: #ca0000;
+        text-align: center;
+        font-size: 4rem;
       }
     </style>
   </head>
   <body>
 
     <div id="joinForm">
-      <input id="nameInput" autocomplete="off" placeholder="name" /><button id="submitName">GO</button>
+      <h1>THE ANNUAL COX CHRISTMAS QUIZ</h1>
+      <div class="join">
+        <input id="nameInput" autocomplete="off" placeholder="name" /><button id="submitName">GO</button>
+      </div>
     </div>
 
-    <div id="quizForms" class="hide">
+    <div id="quizForms" class="forms hide">
       <form id="form1" action="">
-        <div>1<input data-q id="q1" placeholder="Q1" autocomplete="off" /></div>
-        <div>2<input data-q id="q2" placeholder="Q2" autocomplete="off" /></div>
-        <div>3<input data-q id="q3" placeholder="Q3" autocomplete="off" /></div>
-        <div>4<input data-q id="q4" placeholder="Q4" autocomplete="off" /></div>
-        <div>5<input data-q id="q5" placeholder="Q5" autocomplete="off" /></div>
+        <div><span>1</span><input data-q id="q1" placeholder="Q1" autocomplete="off" /></div>
+        <div><span>2</span><input data-q id="q2" placeholder="Q2" autocomplete="off" /></div>
+        <div><span>3</span><input data-q id="q3" placeholder="Q3" autocomplete="off" /></div>
+        <div><span>4</span><input data-q id="q4" placeholder="Q4" autocomplete="off" /></div>
+        <div><span>5</span><input data-q id="q5" placeholder="Q5" autocomplete="off" /></div>
         <button>Send</button>
       </form>
   
       <form id="form2" action="">
-        <div>6<input data-q id="q6" placeholder="Q6" autocomplete="off" /></div>
-        <div>7<input data-q id="q7" placeholder="Q7" autocomplete="off" /></div>
-        <div>8<input data-q id="q8" placeholder="Q8" autocomplete="off" /></div>
+        <div><span>6</span><input data-q id="q6" placeholder="Q6" autocomplete="off" /></div>
+        <div><span>7</span><input data-q id="q7" placeholder="Q7" autocomplete="off" /></div>
+        <div><span>8</span><input data-q id="q8" placeholder="Q8" autocomplete="off" /></div>
         <button>Send</button>
       </form>
 
       <form id="form3" action="">
-        <div>9<input data-q id="q9" placeholder="Q9" autocomplete="off" /></div>
-        <div>10<input data-q id="q10" placeholder="Q10" autocomplete="off" /></div>
-        <div>11<input data-q id="q11" placeholder="Q11" autocomplete="off" /></div>
+        <div><span>9</span><input data-q id="q9" placeholder="Q9" autocomplete="off" /></div>
+        <div><span>10</span><input data-q id="q10" placeholder="Q10" autocomplete="off" /></div>
+        <div><span>11</span><input data-q id="q11" placeholder="Q11" autocomplete="off" /></div>
         <button>Send</button>
       </form>
 
       <form id="form4" action="">
-        <div>12<input data-q id="q12" placeholder="Q12" autocomplete="off" /></div>
-        <div>13<input data-q id="q13" placeholder="Q13" autocomplete="off" /></div>
-        <div>14<input data-q id="q14" placeholder="Q14" autocomplete="off" /></div>
+        <div><span>12</span><input data-q id="q12" placeholder="Q12" autocomplete="off" /></div>
+        <div><span>13</span><input data-q id="q13" placeholder="Q13" autocomplete="off" /></div>
+        <div><span>14</span><input data-q id="q14" placeholder="Q14" autocomplete="off" /></div>
         <button>Send</button>
       </form>
 
       <form id="form5" action="">
-        <div>15<input data-q id="q15" placeholder="Q15" autocomplete="off" /></div>
-        <div>16<input data-q id="q16" placeholder="Q16" autocomplete="off" /></div>
-        <div>17<input data-q id="q17" placeholder="Q17" autocomplete="off" /></div>
+        <div><span>15</span><input data-q id="q15" placeholder="Min" autocomplete="off" type="number" /><input data-q id="q15-2" placeholder="Max" autocomplete="off" type="number" /></div>
+        <div><span>16</span><input data-q id="q16" placeholder="Min" autocomplete="off" type="number" /><input data-q id="q16-2" placeholder="Max" autocomplete="off" type="number" /></div>
+        <div><span>17</span><input data-q id="q17" placeholder="Min" autocomplete="off" type="number" /><input data-q id="q17-2" placeholder="Max" autocomplete="off" type="number" /></div>
         <button>Send</button>
       </form>
 
       <form id="form6" action="">
-        <div>18<input data-q id="q18" placeholder="Q18" autocomplete="off" /></div>
-        <div>19<input data-q id="q19" placeholder="Q19" autocomplete="off" /></div>
-        <div>20<input data-q id="q20" placeholder="Q20" autocomplete="off" /></div>
+        <div><span>18</span><input data-q id="q18" placeholder="Q18" autocomplete="off" /></div>
+        <div><span>19</span><input data-q id="q19" placeholder="Q19" autocomplete="off" /></div>
+        <div><span>20</span><input data-q id="q20" placeholder="Q20" autocomplete="off" /></div>
         <button>Send</button>
       </form>
 
       <form id="form7" action="">
-        <div>21<input data-q id="q21" placeholder="Q21" autocomplete="off" /></div>
-        <div>22<input data-q id="q22" placeholder="Q22" autocomplete="off" /></div>
-        <div>23<input data-q id="q23" placeholder="Q23" autocomplete="off" /></div>
+        <div><span>21</span><input data-q id="q21" placeholder="Q21" autocomplete="off" /></div>
+        <div><span>22</span><input data-q id="q22" placeholder="Q22" autocomplete="off" /></div>
+        <div><span>23</span><input data-q id="q23" placeholder="Q23" autocomplete="off" /></div>
         <button>Send</button>
       </form>
 
-      <form id="form7" action="">
-        <div>24<input data-q id="q24" placeholder="Q24" autocomplete="off" /></div>
-        <div>25<input data-q id="q25" placeholder="Q25" autocomplete="off" /></div>
+      <form id="form8" action="">
+        <div><span>24</span><input data-q id="q24" placeholder="Q24" autocomplete="off" /></div>
+        <div><span>25</span><input data-q id="q25" placeholder="Q25" autocomplete="off" /></div>
         <button>Send</button>
       </form>
 
-      <div id="form8" style="height: 100vh;">
+      <div id="form9" style="height: 100vh; scroll-snap-align: center;">
       <h2 style="padding: 2rem;">Thanks for playing!</h2>
       </div>
     </div>
@@ -141,10 +168,16 @@
       document.querySelectorAll('form').forEach(form => {
         form.addEventListener('submit', (e) => {
           e.preventDefault();
-          const answers = [...document.querySelectorAll('[data-q]')].map(a => ({q: parseInt(a.id.substring(1)), a: a.value}));
-          console.log(answers);
+          const answers = [...document.querySelectorAll('[data-q]')]
+            .filter(i => i.placeholder !== 'Max')
+            .map(a => ({q: parseInt(a.id.substring(1)), a: a.value}));
+            const maxInputs = document.querySelectorAll('input[placeholder="Max"]');
+          answers[14].a += `/${maxInputs[0].value} (${maxInputs[0].value - answers[14].a})`
+          answers[15].a += `/${maxInputs[1].value} (${maxInputs[1].value - answers[15].a})`
+          answers[16].a += `/${maxInputs[2].value} (${maxInputs[2].value - answers[16].a})`
           socket.emit('answers', {id: sessionId, answers});
-          console.log(e.target.id[4]);
+          
+          console.log(answers);
           const nextForm = parseInt(e.target.id[4])+1;
           window.location.href = "#form"+nextForm;
         });
