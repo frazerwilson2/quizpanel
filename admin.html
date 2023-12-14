@@ -32,7 +32,7 @@
         console.log('received evt', users);
         document.querySelector('#players').innerHTML = Object.values(users).map(u => `<div>
             <h1>${u.name}</h1>
-            <ul>${Object.values(u.answers).map((answer, i) => `<li>${answer.q}. ${answer.a}</li>`).join('')}</ul>
+            <ul>${Object.values(u.answers).map((answer, i) => `${[5, 10, 15, 20, 23, 26, 29].includes(i) ? '<hr/>':''}<li>${answer.q}. ${answer.a}</li>`).join('')}</ul>
         </div>`).join('')
       });
     </script>

@@ -87,47 +87,52 @@
         <div><span>6</span><input data-q id="q6" placeholder="Q6" autocomplete="off" /></div>
         <div><span>7</span><input data-q id="q7" placeholder="Q7" autocomplete="off" /></div>
         <div><span>8</span><input data-q id="q8" placeholder="Q8" autocomplete="off" /></div>
+        <div><span>9</span><input data-q id="q9" placeholder="Q9" autocomplete="off" /></div>
+        <div><span>10</span><input data-q id="q10" placeholder="Q10" autocomplete="off" /></div>
         <button>Send</button>
       </form>
 
       <form id="form3" action="">
-        <div><span>9</span><input data-q id="q9" placeholder="Q9" autocomplete="off" /></div>
-        <div><span>10</span><input data-q id="q10" placeholder="Q10" autocomplete="off" /></div>
         <div><span>11</span><input data-q id="q11" placeholder="Q11" autocomplete="off" /></div>
+        <div><span>12</span><input data-q id="q12" placeholder="Q12" autocomplete="off" /></div>
+        <div><span>13</span><input data-q id="q13" placeholder="Q13" autocomplete="off" /></div>
+        <div><span>14</span><input data-q id="q14" placeholder="Q14" autocomplete="off" /></div>
+        <div><span>15</span><input data-q id="q15" placeholder="Q15" autocomplete="off" /></div>
         <button>Send</button>
       </form>
 
       <form id="form4" action="">
-        <div><span>12</span><input data-q id="q12" placeholder="Q12" autocomplete="off" /></div>
-        <div><span>13</span><input data-q id="q13" placeholder="Q13" autocomplete="off" /></div>
-        <div><span>14</span><input data-q id="q14" placeholder="Q14" autocomplete="off" /></div>
-        <button>Send</button>
-      </form>
-
-      <form id="form5" action="">
-        <div><span>15</span><input data-q id="q15" placeholder="Min" autocomplete="off" type="number" /><input data-q id="q15-2" placeholder="Max" autocomplete="off" type="number" /></div>
-        <div><span>16</span><input data-q id="q16" placeholder="Min" autocomplete="off" type="number" /><input data-q id="q16-2" placeholder="Max" autocomplete="off" type="number" /></div>
-        <div><span>17</span><input data-q id="q17" placeholder="Min" autocomplete="off" type="number" /><input data-q id="q17-2" placeholder="Max" autocomplete="off" type="number" /></div>
-        <button>Send</button>
-      </form>
-
-      <form id="form6" action="">
+        <div><span>16</span><input data-q id="q16" placeholder="Q16" autocomplete="off" /></div>
+        <div><span>17</span><input data-q id="q17" placeholder="Q17" autocomplete="off" /></div>
         <div><span>18</span><input data-q id="q18" placeholder="Q18" autocomplete="off" /></div>
         <div><span>19</span><input data-q id="q19" placeholder="Q19" autocomplete="off" /></div>
         <div><span>20</span><input data-q id="q20" placeholder="Q20" autocomplete="off" /></div>
         <button>Send</button>
       </form>
 
+      <form id="form5" action="">
+        <div><span>21</span><input data-q id="q21" placeholder="Min" autocomplete="off" type="number" /><input data-q id="q21-2" placeholder="Max" autocomplete="off" type="number" /></div>
+        <div><span>22</span><input data-q id="q22" placeholder="Min" autocomplete="off" type="number" /><input data-q id="q22-2" placeholder="Max" autocomplete="off" type="number" /></div>
+        <div><span>23</span><input data-q id="q23" placeholder="Min" autocomplete="off" type="number" /><input data-q id="q23-2" placeholder="Max" autocomplete="off" type="number" /></div>
+        <button>Send</button>
+      </form>
+
+      <form id="form6" action="">
+        <div><span>24</span><input data-q id="q24" placeholder="Q24" autocomplete="off" /></div>
+        <div><span>25</span><input data-q id="q25" placeholder="Q25" autocomplete="off" /></div>
+        <div><span>26</span><input data-q id="q26" placeholder="Q26" autocomplete="off" /></div>
+        <button>Send</button>
+      </form>
+
       <form id="form7" action="">
-        <div><span>21</span><input data-q id="q21" placeholder="Q21" autocomplete="off" /></div>
-        <div><span>22</span><input data-q id="q22" placeholder="Q22" autocomplete="off" /></div>
-        <div><span>23</span><input data-q id="q23" placeholder="Q23" autocomplete="off" /></div>
+        <div><span>27</span><input data-q id="q27" placeholder="Q27" autocomplete="off" /></div>
+        <div><span>28</span><input data-q id="q28" placeholder="Q28" autocomplete="off" /></div>
+        <div><span>29</span><input data-q id="q29" placeholder="Q29" autocomplete="off" /></div>
         <button>Send</button>
       </form>
 
       <form id="form8" action="">
-        <div><span>24</span><input data-q id="q24" placeholder="Q24" autocomplete="off" /></div>
-        <div><span>25</span><input data-q id="q25" placeholder="Q25" autocomplete="off" /></div>
+        <div><span>30</span><input data-q id="q30" placeholder="Q30" autocomplete="off" /></div>
         <button>Send</button>
       </form>
 
@@ -172,9 +177,9 @@
             .filter(i => i.placeholder !== 'Max')
             .map(a => ({q: parseInt(a.id.substring(1)), a: a.value}));
             const maxInputs = document.querySelectorAll('input[placeholder="Max"]');
-          answers[14].a += `/${maxInputs[0].value} (${maxInputs[0].value - answers[14].a})`
-          answers[15].a += `/${maxInputs[1].value} (${maxInputs[1].value - answers[15].a})`
-          answers[16].a += `/${maxInputs[2].value} (${maxInputs[2].value - answers[16].a})`
+          answers[20].a += `/${maxInputs[0].value} (${maxInputs[0].value - answers[20].a})`
+          answers[21].a += `/${maxInputs[1].value} (${maxInputs[1].value - answers[21].a})`
+          answers[22].a += `/${maxInputs[2].value} (${maxInputs[2].value - answers[22].a})`
           socket.emit('answers', {id: sessionId, answers});
           
           console.log(answers);
